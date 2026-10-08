@@ -1,0 +1,42 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introducción" />
+
+# @catbyte/ui
+
+Sistema de diseño de **CatByte**. Cada componente y cada token corresponde 1:1 a uno del Figma
+[CatByte2.0](https://www.figma.com/design/ootKXCdsdW2a7Q9TiWXs2x/CatByte2.0).
+
+## Instalar en una app Next.js
+
+```bash
+npm install @catbyte/ui
+```
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "@catbyte/ui/tema.css";
+```
+
+```tsx
+// app/layout.tsx — las fuentes las carga la app con next/font
+import { Anonymous_Pro, Kaushan_Script, Orbitron } from "next/font/google";
+const orbitron = Orbitron({ variable: "--font-familia-orbitron", subsets: ["latin"], weight: "900" });
+const anonymousPro = Anonymous_Pro({ variable: "--font-familia-anonymous-pro", subsets: ["latin"], weight: ["400", "700"] });
+const kaushanScript = Kaushan_Script({ variable: "--font-familia-kaushan-script", subsets: ["latin"], weight: "400" });
+// <html className={`${orbitron.variable} ${anonymousPro.variable} ${kaushanScript.variable}`}>
+```
+
+```tsx
+import { Boton, Header } from "@catbyte/ui";
+
+<Boton tipo="primario" tamano="grande">Descubre tu computador ideal</Boton>
+```
+
+## Reglas
+
+1. **Solo tokens semánticos**: `bg-fondo-pagina`, `text-texto-marca`, `p-16`, `rounded-8`, `titulo-1`. La paleta por defecto de Tailwind está desactivada.
+2. **Espacios en px exactos**: `p-16` = 16px, igual que `espacio/16` en Figma.
+3. **Un componente nuevo nace en Figma** y luego se implementa aquí con el mismo nombre.
+4. **Accesibilidad**: los controles sin texto llevan `aria-label`; todo funciona a 400px sin scroll horizontal.

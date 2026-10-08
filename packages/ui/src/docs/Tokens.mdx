@@ -1,0 +1,28 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
+import { TablaColores, TablaTexto } from "./TablaTokens";
+
+<Meta title="Tokens" />
+
+# Tokens
+
+Generados desde Figma con `npm run tokens` (fuente: `tokens/figma.json`). No se editan a mano.
+
+| Figma | CSS | Tailwind |
+|---|---|---|
+| `fondo/pagina` | `--color-fondo-pagina` | `bg-fondo-pagina` |
+| `espacio/16` | `--spacing: 1px` | `p-16`, `gap-16` |
+| `radio/8` | `--radius-8` | `rounded-8` |
+| `Titulo/1` | `@utility titulo-1` | `titulo-1` |
+| `Sombra/dura-6` | `--shadow-dura-6` | `shadow-dura-6` |
+
+## Color semántico
+
+<Unstyled>
+  <TablaColores />
+</Unstyled>
+
+## Tipografía
+
+<Unstyled>
+  <TablaTexto />
+</Unstyled>

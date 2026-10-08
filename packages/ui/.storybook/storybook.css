@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "../src/tema.css";
+@source "../src";
+/* La tabla de tokens arma los nombres de clase en tiempo de ejecución; se declaran aquí para que existan. */
+@source inline("titulo-{1,2,3,4,5,6,7} cuerpo-{1,2,3,4,5} grafico-{1,2}");
+
+/* En la app estas variables las crea next/font; aquí se cargan desde Google Fonts. */
+:root {
+  --font-familia-orbitron: "Orbitron";
+  --font-familia-anonymous-pro: "Anonymous Pro";
+  --font-familia-kaushan-script: "Kaushan Script";
+}
+
+body {
+  background: var(--color-fondo-pagina);
+  color: var(--color-texto-principal);
+  font-family: var(--font-cuerpo);
+}

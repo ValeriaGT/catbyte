@@ -1,27 +1,14 @@
 {
-  "name": "catbyte-web",
-  "version": "0.1.0",
+  "name": "catbyte",
   "private": true,
+  "packageManager": "npm@11.2.0",
+  "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "tokens": "node scripts/generar-tokens.mjs"
-  },
-  "dependencies": {
-    "next": "16.4.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/turbopack": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "build:ui": "npm run build -w @catbyte/ui",
+    "dev": "npm run build:ui && npm run dev -w web",
+    "build": "npm run build:ui && npm run build -w web",
+    "lint": "npm run lint -w web",
+    "tokens": "npm run tokens -w @catbyte/ui",
+    "storybook": "npm run build:ui && npm run storybook -w @catbyte/ui"
   }
 }
