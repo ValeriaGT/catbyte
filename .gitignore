@@ -40,6 +40,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Fuentes con licencia comercial: no se versionan (ver README)
-/public/fonts/eurostar-*
-/public/fonts/hey-august*

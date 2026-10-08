@@ -1,15 +1,19 @@
-// Genera src/styles/tokens.css a partir de tokens/figma.json (exportado del Figma de CatByte).
+// Genera src/styles/tokens.css a partir de tokens/figma.json (exportado del Figma CatByte2.0).
 //
 //   npm run tokens
 //
 // Mapeo Figma → código (los nombres se conservan 1:1):
-//   Colección "Primitivos"   color/neon/verde   → --primitivo-neon-verde      (solo :root, sin clase Tailwind)
-//   Colección "Semánticos"   fondo/pagina       → --color-fondo-pagina        → bg-fondo-pagina, text-…, border-…
-//   Colección "Dimensiones"  espacio/16         → --spacing: 1px              → p-16, gap-16, m-16 = 16px
-//                            radio/8            → --radius-8                  → rounded-8
-//                            borde/2            → (nativo)                    → border-2 = 2px
-//   Estilos de texto         Heading/H-1        → @utility heading-1
-//   Estilos de efecto        Sombra/E2          → --shadow-e2                 → shadow-e2
+//   Primitivos   color/neon/verde   → --primitivo-neon-verde   (solo :root, sin clase de Tailwind)
+//   Semánticos   fondo/pagina       → --color-fondo-pagina     → bg-fondo-pagina, text-texto-principal, border-borde-marca
+//   Dimensiones  espacio/16         → --spacing: 1px           → p-16, gap-24, mt-8 (1 unidad = 1px)
+//                radio/8            → --radius-8               → rounded-8
+//                grosor/2           → --grosor-2               → border-2 (nativo) o var(--grosor-2)
+//   Tipografía   fuente/titulo      → --font-titulo            → font-titulo
+//   Estilos de texto  Titulo/1     → @utility titulo-1
+//   Estilos de efecto Sombra/dura-6 → --shadow-dura-6          → shadow-dura-6
+//
+// Las familias se cargan con next/font en src/app/layout.tsx, que expone --font-familia-<nombre>.
+// Si cambias una fuente en Figma, agrega la nueva familia allí.
 
 import { readFileSync, writeFileSync } from "node:fs";
 
@@ -27,10 +31,17 @@ const slug = (s) =>
 
 const sinPrefijo = (nombre, prefijo) => (nombre.startsWith(prefijo + "/") ? nombre.slice(prefijo.length + 1) : nombre);
 
-const { variables, textStyles, effectStyles } = JSON.parse(readFileSync(ENTRADA, "utf8"));
-const porColeccion = (c) => variables.filter((v) => v.collection === c);
+const RESPALDO = {
+  titulo: '"Arial Black", sans-serif',
+  cuerpo: '"Courier New", monospace',
+  grafica: '"Brush Script MT", cursive',
+};
 
-const primitivos = porColeccion("Primitivos");
+const { variables, textStyles, effectStyles } = JSON.parse(readFileSync(ENTRADA, "utf8"));
+const de = (coleccion, prefijo = "") =>
+  variables.filter((v) => v.collection === coleccion && v.name.startsWith(prefijo));
+
+const primitivos = de("Primitivos");
 const nombrePrimitivo = new Map(primitivos.map((v) => [v.name, `--primitivo-${slug(sinPrefijo(v.name, "color"))}`]));
 
 const valorSemantico = (v) => {
@@ -40,42 +51,49 @@ const valorSemantico = (v) => {
   return `var(${ref})`;
 };
 
-const dimensiones = porColeccion("Dimensiones");
-const radios = dimensiones.filter((v) => v.name.startsWith("radio/"));
-const fuentes = {
-  "Eurostar Black Extended": '"Eurostar Black Extended", "Arial Black", sans-serif',
-  "Anonymous Pro": 'var(--font-anonymous-pro), "Courier New", monospace',
-  "Hey August": '"Hey August", "Brush Script MT", cursive',
-};
+const semanticos = de("Semánticos");
+const radios = de("Dimensiones", "radio/");
+const grosores = de("Dimensiones", "grosor/");
+const fuentes = de("Tipografía", "fuente/");
 
 const lineas = [
   "/* Generado por scripts/generar-tokens.mjs desde tokens/figma.json. NO EDITAR A MANO. */",
   "",
   ":root {",
   ...primitivos.map((v) => `  ${nombrePrimitivo.get(v.name)}: ${v.value};`),
+  ...grosores.map((v) => `  --grosor-${slug(sinPrefijo(v.name, "grosor"))}: ${v.value}px;`),
   "}",
   "",
-  "@theme {",
+  "@theme static {",
   "  --color-*: initial;",
-  ...porColeccion("Semánticos").map((v) => `  --color-${slug(v.name)}: ${valorSemantico(v)};`),
+  "  --color-transparent: transparent;",
+  "  --color-current: currentColor;",
+  ...semanticos.map((v) => `  --color-${slug(v.name)}: ${valorSemantico(v)};`),
   "",
   "  --spacing: 1px;",
   "",
   "  --radius-*: initial;",
-  ...radios.map((v) => `  --radius-${slug(sinPrefijo(v.name, "radio"))}: ${v.value === 999 ? "9999px" : v.value + "px"};`),
+  ...radios.map((v) => {
+    const k = slug(sinPrefijo(v.name, "radio"));
+    return `  --radius-${k}: ${k === "full" ? "9999px" : v.value + "px"};`;
+  }),
   "",
   "  --shadow-*: initial;",
   ...effectStyles.map((e) => `  --shadow-${slug(e.name.split("/").pop())}: ${e.css};`),
   "",
-  ...Object.entries(fuentes).map(([familia, pila]) => `  --font-${slug(familia)}: ${pila};`),
+  "  --font-*: initial;",
+  ...fuentes.map((v) => {
+    const rol = slug(sinPrefijo(v.name, "fuente"));
+    return `  --font-${rol}: var(--font-familia-${slug(v.value)}), ${RESPALDO[rol] ?? "sans-serif"};`;
+  }),
   "}",
   "",
   ...textStyles.flatMap((t) => {
     const [grupo, nivel] = t.name.split("/");
-    const nombre = `${slug(grupo)}-${nivel.replace(/^[A-Za-z]+-/, "")}`;
+    const familia = t.fontVar ? `var(--font-${slug(sinPrefijo(t.fontVar, "fuente"))})` : `"${t.family}"`;
     return [
-      `@utility ${nombre} {`,
-      `  font-family: var(--font-${slug(t.family)});`,
+      `@utility ${slug(grupo)}-${slug(nivel)} {`,
+      `  font-family: ${familia};`,
       `  font-size: ${t.size}px;`,
       `  font-weight: ${t.weight};`,
       `  line-height: ${t.lineHeight}px;`,
@@ -88,6 +106,6 @@ const lineas = [
 
 writeFileSync(SALIDA, lineas.join("\n"));
 console.log(
-  `${SALIDA}: ${primitivos.length} primitivos, ${porColeccion("Semánticos").length} semánticos, ` +
-    `${radios.length} radios, ${effectStyles.length} sombras, ${textStyles.length} estilos de texto`,
+  `${SALIDA}: ${primitivos.length} primitivos, ${semanticos.length} semánticos, ${radios.length} radios, ` +
+    `${grosores.length} grosores, ${fuentes.length} fuentes, ${effectStyles.length} sombras, ${textStyles.length} estilos de texto`,
 );

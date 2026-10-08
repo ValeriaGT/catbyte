@@ -1,0 +1,206 @@
+/* Generado por scripts/generar-tokens.mjs desde tokens/figma.json. NO EDITAR A MANO. */
+
+:root {
+  --primitivo-neutro-negro: #000000;
+  --primitivo-neutro-950: #101010;
+  --primitivo-neutro-900: #181818;
+  --primitivo-neutro-850: #1e1e1e;
+  --primitivo-neutro-800: #333333;
+  --primitivo-neutro-700: #3d3d3d;
+  --primitivo-neutro-400: #afafb1;
+  --primitivo-neutro-300: #d9d9d9;
+  --primitivo-neutro-blanco: #ffffff;
+  --primitivo-neon-verde: #9ffe00;
+  --primitivo-neon-verde-oscuro: #93ea02;
+  --primitivo-neon-azul: #00ffff;
+  --primitivo-neon-morado: #7f00fe;
+  --primitivo-neon-fucsia: #ff00fd;
+  --primitivo-neon-amarillo: #ffff02;
+  --primitivo-neon-naranja: #ff8600;
+  --primitivo-naranja-claro: #ffae55;
+  --primitivo-azul-claro: #aaffff;
+  --primitivo-rojo-oscuro: #d00416;
+  --primitivo-rojo-medio: #fb3748;
+  --primitivo-rojo-claro: #ff737f;
+  --primitivo-amarillo-medio: #ffdb43;
+  --primitivo-amarillo-oscuro: #dfb400;
+  --primitivo-verde-claro: #84ebb4;
+  --primitivo-verde-medio: #1fc16b;
+  --primitivo-alfa-verde-10: #1fc16b1a;
+  --primitivo-alfa-amarillo-10: #ffdb431a;
+  --primitivo-alfa-naranja-10: #ff86001a;
+  --primitivo-alfa-azul-10: #00ffff1a;
+  --primitivo-alfa-rojo-10: #fb37481a;
+  --primitivo-alfa-negro-50: #00000080;
+  --primitivo-alfa-blanco-10: #ffffff1a;
+  --grosor-1: 1px;
+  --grosor-2: 2px;
+  --grosor-4: 4px;
+  --grosor-8: 8px;
+}
+
+@theme static {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-fondo-pagina: var(--primitivo-neutro-900);
+  --color-fondo-superficie: var(--primitivo-neutro-850);
+  --color-fondo-superficie-alta: var(--primitivo-neutro-800);
+  --color-fondo-hundido: var(--primitivo-neutro-negro);
+  --color-fondo-inverso: var(--primitivo-neutro-blanco);
+  --color-fondo-marca: var(--primitivo-neon-verde);
+  --color-fondo-destacado: var(--primitivo-neon-naranja);
+  --color-fondo-acento: var(--primitivo-neon-morado);
+  --color-texto-principal: var(--primitivo-neutro-blanco);
+  --color-texto-secundario: var(--primitivo-neutro-400);
+  --color-texto-inverso: var(--primitivo-neutro-negro);
+  --color-texto-marca: var(--primitivo-neon-verde);
+  --color-texto-error: var(--primitivo-rojo-claro);
+  --color-borde-sutil: var(--primitivo-neutro-700);
+  --color-borde-default: var(--primitivo-neutro-400);
+  --color-borde-fuerte: var(--primitivo-neutro-blanco);
+  --color-borde-marca: var(--primitivo-neon-verde);
+  --color-borde-error: var(--primitivo-rojo-claro);
+  --color-borde-inverso: var(--primitivo-neutro-negro);
+  --color-accion-primaria: var(--primitivo-neon-verde);
+  --color-accion-primaria-hover: var(--primitivo-neon-verde-oscuro);
+  --color-accion-sobre-primaria: var(--primitivo-neutro-negro);
+  --color-accion-secundaria: var(--primitivo-neon-verde);
+  --color-accion-secundaria-hover: var(--primitivo-alfa-blanco-10);
+  --color-estado-exito: var(--primitivo-verde-medio);
+  --color-estado-exito-fondo: var(--primitivo-alfa-verde-10);
+  --color-estado-alerta: var(--primitivo-amarillo-oscuro);
+  --color-estado-alerta-fondo: var(--primitivo-alfa-amarillo-10);
+  --color-estado-error: var(--primitivo-rojo-oscuro);
+  --color-estado-error-fondo: var(--primitivo-alfa-rojo-10);
+  --color-estado-info: var(--primitivo-neon-azul);
+  --color-estado-info-fondo: var(--primitivo-alfa-azul-10);
+  --color-acento-morado: var(--primitivo-neon-morado);
+  --color-acento-verde: var(--primitivo-neon-verde);
+  --color-acento-azul: var(--primitivo-neon-azul);
+  --color-acento-naranja: var(--primitivo-neon-naranja);
+  --color-acento-fucsia: var(--primitivo-neon-fucsia);
+  --color-acento-amarillo: var(--primitivo-neon-amarillo);
+
+  --spacing: 1px;
+
+  --radius-*: initial;
+  --radius-0: 0px;
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-full: 9999px;
+
+  --shadow-*: initial;
+  --shadow-brillo: 0px 4px 4px 0px rgb(255 255 255 / 0.47);
+  --shadow-dura-4: 4px 4px 0px 0px rgb(0 0 0 / 1), inset 0 0 0 2px rgb(0 0 0 / 1), 0px 4px 4px 0px rgb(255 255 255 / 0.25);
+  --shadow-dura-6: 6px 6px 0px 0px rgb(0 0 0 / 1), inset 0 0 0 2px rgb(0 0 0 / 1);
+  --shadow-dura-8: 8px 8px 0px 0px rgb(0 0 0 / 1), inset 0 0 0 2px rgb(0 0 0 / 1);
+  --shadow-suave: 8px 8px 18px 0px rgb(0 0 0 / 0.5);
+
+  --font-*: initial;
+  --font-titulo: var(--font-familia-orbitron), "Arial Black", sans-serif;
+  --font-cuerpo: var(--font-familia-anonymous-pro), "Courier New", monospace;
+  --font-grafica: var(--font-familia-kaushan-script), "Brush Script MT", cursive;
+}
+
+@utility titulo-1 {
+  font-family: var(--font-titulo);
+  font-size: 68px;
+  font-weight: 900;
+  line-height: 76px;
+}
+
+@utility titulo-2 {
+  font-family: var(--font-titulo);
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 64px;
+}
+
+@utility titulo-3 {
+  font-family: var(--font-titulo);
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 52px;
+}
+
+@utility titulo-4 {
+  font-family: var(--font-titulo);
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 44px;
+}
+
+@utility titulo-5 {
+  font-family: var(--font-titulo);
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 36px;
+}
+
+@utility titulo-6 {
+  font-family: var(--font-titulo);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 32px;
+}
+
+@utility titulo-7 {
+  font-family: var(--font-titulo);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 28px;
+}
+
+@utility cuerpo-1 {
+  font-family: var(--font-cuerpo);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+}
+
+@utility cuerpo-2 {
+  font-family: var(--font-cuerpo);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+@utility cuerpo-3 {
+  font-family: var(--font-cuerpo);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+@utility cuerpo-4 {
+  font-family: var(--font-cuerpo);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+@utility cuerpo-5 {
+  font-family: var(--font-cuerpo);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+@utility grafico-1 {
+  font-family: var(--font-grafica);
+  font-size: 180px;
+  font-weight: 400;
+  line-height: 180px;
+}
+
+@utility grafico-2 {
+  font-family: var(--font-grafica);
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 64px;
+}
