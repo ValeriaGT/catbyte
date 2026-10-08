@@ -54,6 +54,7 @@
   --color-fondo-marca: var(--primitivo-neon-verde);
   --color-fondo-destacado: var(--primitivo-neon-naranja);
   --color-fondo-acento: var(--primitivo-neon-morado);
+  --color-fondo-vitrina: var(--primitivo-neutro-400);
   --color-texto-principal: var(--primitivo-neutro-blanco);
   --color-texto-secundario: var(--primitivo-neutro-400);
   --color-texto-inverso: var(--primitivo-neutro-negro);

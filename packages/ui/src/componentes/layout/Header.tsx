@@ -33,7 +33,7 @@ const ACCION = "rounded-4 p-4 text-texto-inverso hover:opacity-75 focus-visible:
 /** Figma: Navegación › Header. Escritorio desde 1280px (xl); por debajo, isotipo + menú hamburguesa. */
 export function Header({ rutaActual }: { rutaActual?: string }) {
   return (
-    <header className="sticky top-0 z-10 flex items-center justify-between gap-24 bg-fondo-marca px-20 py-12 xl:px-32 xl:py-16 2xl:px-64">
+    <header className="sticky top-0 z-30 flex items-center justify-between gap-24 bg-fondo-marca px-20 py-12 xl:px-32 xl:py-16 2xl:px-64">
       <Link href="/" aria-label="CatByte, inicio">
         <Logo className="hidden xl:inline-block" />
         <Logo tipo="isotipo" className="xl:hidden" />

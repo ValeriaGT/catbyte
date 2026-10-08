@@ -20,7 +20,7 @@ export function CardCategoria({ href, titulo, descripcion, imagen }: Props) {
           </clipPath>
         </defs>
         <path d={FORMA} className="fill-fondo-superficie-alta" />
-        {imagen && <image href={imagen} width="389" height="393" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clip})`} opacity="0.35" />}
+        {imagen && <image href={imagen} width="389" height="393" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clip})`} opacity="0.3" />}
         <path
           d={FORMA}
           className={cx(

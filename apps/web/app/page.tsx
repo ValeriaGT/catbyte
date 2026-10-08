@@ -1,18 +1,31 @@
-import Link from "next/link";
-import { clasesBoton, Footer, Header } from "@catbyte/ui";
+import { Footer, Header } from "@catbyte/ui";
+import { BotonChat } from "@/features/home/BotonChat";
+import { Cierre } from "@/features/home/Cierre";
+import { Comunidad } from "@/features/home/Comunidad";
+import { Contacto } from "@/features/home/Contacto";
+import { DisenaTuEstilo } from "@/features/home/DisenaTuEstilo";
+import { EquipoSonado } from "@/features/home/EquipoSonado";
+import { EstilosYProductos } from "@/features/home/EstilosYProductos";
+import { Hero } from "@/features/home/Hero";
+import { Marcas } from "@/features/home/Marcas";
 
+/** Home (Figma original › Prototipo › Home 1, nodo 889:10333). */
 export default function Inicio() {
   return (
     <>
       <Header />
-      <main className="flex flex-1 flex-col items-center justify-center gap-24 px-20 py-80 text-center">
-        <h1 className="grafico-2 lg:grafico-1">Diseña tu estilo</h1>
-        <p className="cuerpo-1 text-texto-secundario">La Home se construye en la siguiente fase.</p>
-        <Link href="/sistema" className={clasesBoton()}>
-          Ver el sistema de diseño
-        </Link>
+      <main className="overflow-x-clip">
+        <Hero />
+        <Marcas />
+        <DisenaTuEstilo />
+        <EquipoSonado />
+        <EstilosYProductos />
+        <Comunidad />
+        <Contacto />
       </main>
       <Footer />
+      <Cierre />
+      <BotonChat />
     </>
   );
 }

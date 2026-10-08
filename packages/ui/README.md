@@ -70,7 +70,7 @@ import { Boton, CardCategoria, Header } from "@catbyte/ui";
 | Footer | `Footer` | — |
 | Card categoría | `CardCategoria` | `href`, `titulo`, `descripcion`, `imagen` |
 | Card estilo | `CardEstilo` | `href`, `etiqueta`, `color` morado·verde·azul·naranja·fucsia, `imagen` |
-| Card comunidad | `CardComunidad` | `cita`, `nombre`, `rol`, `imagen`, `avatar` |
+| Card comunidad | `CardComunidad` | `cita`, `nombre`, `rol`, `imagen` (PC recortado), `avatar`, `className` |
 | Banner de sección | `BannerSeccion` | `titulo`, `subtitulo`, `color` naranja·oscuro |
 | Título de sección | `TituloSeccion` | `titulo`, `subtitulo` |
 | Marquesina | `Marquesina` | `frase` |
