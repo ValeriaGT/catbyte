@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { CardCategoria } from "./CardCategoria";
 import { CardComunidad } from "./CardComunidad";
 import { CardEstilo } from "./CardEstilo";
+import { CardProducto } from "./CardProducto";
 
 const meta = {
   title: "Cards/Card categoría",
@@ -28,4 +29,14 @@ export const Estilo: Story = {
 export const Comunidad: Story = {
   name: "Card comunidad",
   render: () => <CardComunidad cita="“Es todo lo que esperaba tener en mi trabajo y es muy rápido.”" nombre="Laura Martínez" rol="Diseñadora gráfica" />,
+};
+export const Producto: Story = {
+  name: "Card producto",
+  render: () => (
+    <div className="grid w-[1160px] max-w-full grid-cols-3 gap-48">
+      <CardProducto href="#" titulo="Audífonos" descripcion="Descubre el ideal para ti" color="morado" />
+      <CardProducto href="#" titulo="Mouse pad" descripcion="Descubre el ideal para ti" color="azul" />
+      <CardProducto href="#" titulo="Teclados" descripcion="Descubre el ideal para ti" color="naranja" />
+    </div>
+  ),
 };

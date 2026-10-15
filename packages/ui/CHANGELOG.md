@@ -1,5 +1,19 @@
 # Cambios de @catbyte/ui
 
+## 0.3.0 — 2026-10-14
+
+Configurador de PC (pantallas "PC's Personalizado" y modal "Detalle") y productos recomendados de la Home.
+
+- **CardProducto**: marco del color de acento, foto y panel blanco con "Ver más".
+- Familia **Configurador**: `PasosConfigurador` (pendiente/completado/activo), `IconoCompra` (8 íconos de Figma),
+  `VisorPC` (total, foto que gira y piezas elegidas), `CardOpcion`, `FilaOpcion`, `EtiquetaOpcion`,
+  `CarruselOpciones` (horizontal y vertical, con la barra de avance del diseño), `BotonHerramienta`, `ChipFiltro`,
+  `DetalleOpcion` (modal sobre `<dialog>`) y `Pestanas` (control segmentado del paso Diseño).
+- `CardOpcion` y `FilaOpcion` muestran el ícono del paso cuando no hay foto; `CardOpcion apagada` para las opciones "Sin …".
+- **Migas** de pan.
+- **Footer** `variante="compacto"`: franja negra inclinada de los flujos de compra.
+- **Icono**: `chevron-izquierda`, `play`, `filtro`, `ordenar`.
+
 ## 0.2.0 — 2026-10-08
 
 Ajustes al construir la Home real.

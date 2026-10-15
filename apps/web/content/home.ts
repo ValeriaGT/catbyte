@@ -35,6 +35,12 @@ export const ESTILOS = [
   { etiqueta: "Mood City", color: "fucsia", imagen: "/home/estilos/mood-city.png", href: "/estilos/mood-city" },
 ] as const;
 
+export const PRODUCTOS = [
+  { titulo: "Audífonos", descripcion: "Descubre el ideal para ti", color: "morado", imagen: "/home/productos/audifonos.png", href: "/perifericos/audifonos" },
+  { titulo: "Mouse pad", descripcion: "Descubre el ideal para ti", color: "azul", imagen: "/home/productos/mouse-pad.png", href: "/perifericos/mouse-pad" },
+  { titulo: "Teclados", descripcion: "Descubre el ideal para ti", color: "naranja", imagen: "/home/productos/teclados.png", href: "/perifericos/teclados" },
+] as const;
+
 export const TESTIMONIOS = [
   { cita: "“Es todo lo que esperaba: rinde en mi trabajo y es hermoso”", nombre: "Juana Martínez", rol: "Diseñadora", imagen: "/home/comunidad/pc-rosa.png", avatar: "/home/comunidad/avatar-juana.png" },
   { cita: "“Para mi trabajo y para juegos, simplemente perfecto”", nombre: "Felipe Vanegas", rol: "Desarrollador", imagen: "/home/comunidad/pc-verde.png", avatar: "/home/comunidad/avatar-felipe.png" },
