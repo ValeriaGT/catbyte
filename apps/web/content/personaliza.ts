@@ -10,6 +10,8 @@ export type Opcion = {
   colorEtiqueta?: ColorEtiquetaOpcion;
   /** Nombre corto para la píldora bajo el visor; si falta se usa `nombre`. */
   resumen?: string;
+  /** Fotos desde varios ángulos para el giro del visor (la primera es el frente). */
+  vistas?: string[];
   /** Contenido del modal "Ver más". */
   detalle?: DetallePieza;
   /** Opción "Sin …" (precio 0): no cuenta como pieza elegida ni sale en el resumen. */
@@ -127,7 +129,14 @@ export const OPCIONES: Record<string, Opcion[]> = {
   case: [
     { id: "reactor", nombre: "Case Reactor", precio: 200000, ...uso("Gamer"), imagen: "/personaliza/case/reactor.png" },
     { id: "vanguard", nombre: "Case Vanguard", precio: 200000, ...uso("Gamer"), imagen: "/personaliza/case/vanguard.png" },
-    { id: "xpg", nombre: "Case XPG", precio: 280000, ...uso("Gamer"), imagen: "/personaliza/case/xpg.png" },
+    {
+      id: "xpg",
+      nombre: "Case XPG",
+      precio: 280000,
+      ...uso("Gamer"),
+      imagen: "/personaliza/case/xpg.png",
+      vistas: ["/personaliza/case/xpg.png", "/personaliza/case/xpg-2.png", "/personaliza/case/xpg-3.png", "/personaliza/case/xpg-4.png"],
+    },
     { id: "neo", nombre: "Case Neo", precio: 200000, ...uso("Gamer"), imagen: "/personaliza/case/neo.png" },
     { id: "raptor", nombre: "Case Raptor", precio: 200000, ...uso("Gamer"), imagen: "/personaliza/case/raptor.png" },
     { id: "nexus", nombre: "Case Nexus", precio: 200000, ...uso("Gamer"), imagen: "/personaliza/case/nexus.png" },

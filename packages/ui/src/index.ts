@@ -36,8 +36,16 @@ export { FilaOpcion } from "./componentes/configurador/FilaOpcion";
 export { EtiquetaOpcion, type ColorEtiquetaOpcion } from "./componentes/configurador/EtiquetaOpcion";
 export { DetalleOpcion, type DetallePieza, type TextoResaltado } from "./componentes/configurador/DetalleOpcion";
 export { CarruselOpciones } from "./componentes/configurador/CarruselOpciones";
+export { ResumenCompra, type LineaResumen } from "./componentes/configurador/ResumenCompra";
 export { Pestanas } from "./componentes/configurador/Pestanas";
 export { VisorPC } from "./componentes/configurador/VisorPC";
+
+// Compra
+export { CampoCompra } from "./componentes/compra/CampoCompra";
+export { SeccionCompra } from "./componentes/compra/SeccionCompra";
+export { CasillaVerificacion, OpcionEnvio, OpcionPago } from "./componentes/compra/OpcionesCompra";
+export { SeguimientoPedido, type EtapaPedido } from "./componentes/compra/SeguimientoPedido";
+export { TarjetaPedido } from "./componentes/compra/TarjetaPedido";
 
 // Utilidades
 export { cx } from "./lib/cx";

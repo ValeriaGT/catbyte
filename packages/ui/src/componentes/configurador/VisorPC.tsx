@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cx } from "../../lib/cx";
 import { Icono } from "../ui/Icono";
 
@@ -12,14 +12,33 @@ const FORMA =
 type Props = {
   total: string;
   imagen?: string;
+  /** Fotos del equipo desde varios ángulos (Figma: Gif computador, variantes 1–4). Con play se recorren en bucle. */
+  vistas?: readonly string[];
   /** Piezas elegidas hasta ahora (Figma: tag), una píldora por pieza. */
   etiquetas?: readonly string[];
   className?: string;
 };
 
-/** Figma: Gif computador. Marco con el total, la foto del PC y el botón para hacerla girar. */
-export function VisorPC({ total, imagen, etiquetas = [], className }: Props) {
+/**
+ * Figma: Gif computador. Marco con el total, la foto del PC y el botón de reproducir: con varias `vistas` las
+ * recorre como un giro 3D; con una sola foto la hace girar sobre su eje.
+ */
+export function VisorPC({ total, imagen, vistas = [], etiquetas = [], className }: Props) {
   const [girando, setGirando] = useState(false);
+  const [vista, setVista] = useState(0);
+  const conVistas = vistas.length > 1;
+
+  // Cambia de cara cada 700 ms mientras está en reproducción; al pausar vuelve al frente.
+  useEffect(() => {
+    if (!girando || !conVistas) return;
+    const reloj = setInterval(() => setVista((v) => (v + 1) % vistas.length), 700);
+    return () => {
+      clearInterval(reloj);
+      setVista(0);
+    };
+  }, [girando, conVistas, vistas.length]);
+
+  const foto = conVistas ? vistas[vista] : imagen;
   return (
     <div className={cx("flex w-full max-w-456 flex-col gap-24", className)}>
       <div className="@container relative aspect-[456/429] w-full">
@@ -31,18 +50,31 @@ export function VisorPC({ total, imagen, etiquetas = [], className }: Props) {
           <span>{total}</span>
         </p>
         <div className="absolute top-[29.6%] left-[18.9%] h-[66%] w-[62%] [perspective:800px]">
-          {imagen && (
+          {foto && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={imagen}
+              src={foto}
               alt=""
-              className={cx("h-full w-full object-contain transition-transform duration-[2s] ease-in-out motion-reduce:transition-none", girando && "[transform:rotateY(360deg)]")}
+              className={cx(
+                "h-full w-full object-contain",
+                !conVistas && "transition-transform duration-[2s] ease-in-out motion-reduce:transition-none",
+                !conVistas && girando && "[transform:rotateY(360deg)]",
+              )}
             />
+          )}
+          {/* Precarga las demás caras para que el giro no parpadee. */}
+          {conVistas && (
+            <span hidden>
+              {vistas.map((v) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={v} src={v} alt="" />
+              ))}
+            </span>
           )}
         </div>
         <button
           type="button"
-          aria-label={girando ? "Volver a la vista frontal" : "Girar el equipo"}
+          aria-label={girando ? (conVistas ? "Pausar el giro" : "Volver a la vista frontal") : "Girar el equipo"}
           aria-pressed={girando}
           onClick={() => setGirando((g) => !g)}
           className="absolute top-0 right-0 flex aspect-square w-[16.2%] items-center justify-center rounded-16 border-2 border-borde-marca text-texto-marca transition-colors hover:bg-accion-secundaria-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-borde-marca"
@@ -51,7 +83,7 @@ export function VisorPC({ total, imagen, etiquetas = [], className }: Props) {
         </button>
       </div>
       {etiquetas.length > 0 && (
-        <ul aria-label="Piezas elegidas" className="flex flex-wrap justify-between gap-12">
+        <ul aria-label="Piezas elegidas" className="flex flex-wrap gap-16">
           {etiquetas.map((e) => (
             <li key={e} className="cuerpo-2 min-w-100 rounded-16 bg-fondo-acento px-12 py-8 text-center text-texto-principal">
               {e}
