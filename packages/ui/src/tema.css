@@ -106,6 +106,7 @@
   --shadow-suave: 8px 8px 18px 0px rgb(0 0 0 / 0.5);
 
   --animate-marquesina: marquesina 30s linear infinite;
+  --animate-marquesina-lenta: marquesina 70s linear infinite;
   @keyframes marquesina {
     to {
       transform: translateX(-50%);

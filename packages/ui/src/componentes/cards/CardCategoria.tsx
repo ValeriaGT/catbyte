@@ -8,7 +8,10 @@ const FORMA =
 
 type Props = { href: string; titulo: string; descripcion: string; imagen?: string };
 
-/** Toda la card es un enlace; el chevron es decorativo y replica el Botón ícono. */
+/**
+ * Toda la card es un enlace; el chevron es decorativo y replica el Botón ícono.
+ * En reposo la foto se ve tenue bajo el texto; con hover o foco se aclara del todo y el texto se oculta.
+ */
 export function CardCategoria({ href, titulo, descripcion, imagen }: Props) {
   const clip = `forma-${titulo.normalize("NFD").replace(/[^a-zA-Z0-9]/g, "").toLowerCase()}`;
   return (
@@ -20,7 +23,16 @@ export function CardCategoria({ href, titulo, descripcion, imagen }: Props) {
           </clipPath>
         </defs>
         <path d={FORMA} className="fill-fondo-superficie-alta" />
-        {imagen && <image href={imagen} width="389" height="393" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clip})`} opacity="0.3" />}
+        {imagen && (
+          <image
+            href={imagen}
+            width="389"
+            height="393"
+            preserveAspectRatio="xMidYMid slice"
+            clipPath={`url(#${clip})`}
+            className="opacity-30 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+          />
+        )}
         <path
           d={FORMA}
           className={cx(
@@ -29,7 +41,7 @@ export function CardCategoria({ href, titulo, descripcion, imagen }: Props) {
           )}
         />
       </svg>
-      <div className="absolute inset-x-24 top-[24%] flex flex-col items-center gap-8 text-center">
+      <div className="absolute inset-x-24 top-[24%] flex flex-col items-center gap-8 text-center transition-opacity duration-300 group-hover:opacity-0 group-focus-visible:opacity-0">
         <h3 className="titulo-5 text-texto-principal">{titulo}</h3>
         <p className="cuerpo-1 text-texto-principal">{descripcion}</p>
       </div>

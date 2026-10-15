@@ -1,5 +1,5 @@
 import { Footer, Header } from "@catbyte/ui";
-import { BotonChat } from "@/features/home/BotonChat";
+import { BotonChat } from "@/features/comun/BotonChat";
 import { Cierre } from "@/features/home/Cierre";
 import { Comunidad } from "@/features/home/Comunidad";
 import { Contacto } from "@/features/home/Contacto";

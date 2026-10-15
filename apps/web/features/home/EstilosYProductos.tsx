@@ -1,5 +1,5 @@
-import { BannerSeccion, CardEstilo, TituloSeccion } from "@catbyte/ui";
-import { ESTILOS } from "@/content/home";
+import { BannerSeccion, CardEstilo, CardProducto, TituloSeccion } from "@catbyte/ui";
+import { ESTILOS, PRODUCTOS } from "@/content/home";
 
 /** Panel oscuro con los estilos de setup y los productos recomendados. */
 export function EstilosYProductos() {
@@ -15,10 +15,15 @@ export function EstilosYProductos() {
             </li>
           ))}
         </ul>
-        <div className="flex flex-col items-center gap-24 pb-80">
+        <div className="flex flex-col items-center gap-32 px-40 pb-80">
           <TituloSeccion titulo="PRODUCTOS RECOMENDADOS" />
-          {/* El diseño de esta sección aún no tiene contenido; queda el espacio reservado. */}
-          <p className="cuerpo-1 px-40 text-center text-texto-secundario">Muy pronto: los equipos más pedidos por la comunidad.</p>
+          <ul className="grid w-full max-w-[1164px] justify-items-center gap-32 md:grid-cols-2 lg:grid-cols-3 lg:gap-48">
+            {PRODUCTOS.map((p) => (
+              <li key={p.href} className="w-full max-w-354">
+                <CardProducto {...p} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

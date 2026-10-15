@@ -1,5 +1,26 @@
 # Cambios de @catbyte/ui
 
+## 0.3.0 — 2026-10-14
+
+Configurador de PC (pantallas "PC's Personalizado" y modal "Detalle") y productos recomendados de la Home.
+
+- **CardProducto**: marco del color de acento, foto y panel blanco con "Ver más".
+- Familia **Configurador**: `PasosConfigurador` (pendiente/completado/activo), `IconoCompra` (8 íconos de Figma),
+  `VisorPC` (total, foto que gira y piezas elegidas), `CardOpcion`, `FilaOpcion`, `EtiquetaOpcion`,
+  `CarruselOpciones` (horizontal y vertical, con la barra de avance del diseño), `BotonHerramienta`, `ChipFiltro`,
+  `DetalleOpcion` (modal sobre `<dialog>`) y `Pestanas` (control segmentado del paso Diseño).
+- `CardOpcion` y `FilaOpcion` muestran el ícono del paso cuando no hay foto; `CardOpcion apagada` para las opciones "Sin …".
+- **Migas** de pan.
+- **Footer** `variante="compacto"`: franja negra inclinada de los flujos de compra.
+- **Icono**: `chevron-izquierda`, `play`, `filtro`, `ordenar`.
+- **Header** con submenús según el Sitemap de Figma: desplegable en escritorio (hover o clic, Esc y clic fuera
+  cierran) y panel con secciones plegables en móvil (el botón hamburguesa ahora funciona).
+- **ModalVideo**: modal "¿Cómo personalizar?" con video (o la maqueta del reproductor mientras no haya video) y CTA.
+- **CarruselOpciones**: la barra de avance ahora desplaza la lista (arrastrar, pulsar, flechas) y la rueda del mouse
+  mueve la fila horizontal.
+- **CardCategoria**: la foto queda tenue (30 %) y con hover o foco se ve completa mientras el texto se oculta.
+- **Marquesina** `estatica`: cinta quieta. Token nuevo `animate-marquesina-lenta` (70 s) para la franja de marcas.
+
 ## 0.2.0 — 2026-10-08
 
 Ajustes al construir la Home real.
