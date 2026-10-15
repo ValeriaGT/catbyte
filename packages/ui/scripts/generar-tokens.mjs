@@ -85,6 +85,7 @@ const lineas = [
   ...effectStyles.map((e) => `  --shadow-${slug(e.name.split("/").pop())}: ${e.css};`),
   "",
   "  --animate-marquesina: marquesina 30s linear infinite;",
+  "  --animate-marquesina-lenta: marquesina 70s linear infinite;",
   "  @keyframes marquesina {",
   "    to {",
   "      transform: translateX(-50%);",

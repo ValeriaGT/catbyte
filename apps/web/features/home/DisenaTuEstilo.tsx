@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import { clasesBoton, cx, Etiqueta } from "@catbyte/ui";
+import { Etiqueta } from "@catbyte/ui";
+import { AccionesPersonalizar } from "./AccionesPersonalizar";
 
 /** Bloque gráfico "Arma tu poder / Diseña tu estilo" sobre la textura de persiana. */
 export function DisenaTuEstilo() {
@@ -15,9 +15,7 @@ export function DisenaTuEstilo() {
             Diseña tu estilo
           </h2>
         </div>
-        <Link href="/como-personalizar" className={cx(clasesBoton("primario", "pequeno"), "mx-20 text-center md:titulo-6 md:px-24 md:py-12")}>
-          ¿Cómo personalizar?
-        </Link>
+        <AccionesPersonalizar />
       </div>
     </section>
   );

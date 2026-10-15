@@ -24,6 +24,7 @@ export { BannerSeccion } from "./componentes/secciones/BannerSeccion";
 export { TituloSeccion } from "./componentes/secciones/TituloSeccion";
 export { Marquesina } from "./componentes/secciones/Marquesina";
 export { FormularioContacto } from "./componentes/secciones/FormularioContacto";
+export { ModalVideo } from "./componentes/secciones/ModalVideo";
 
 // Configurador
 export { IconoCompra } from "./componentes/configurador/IconoCompra";
