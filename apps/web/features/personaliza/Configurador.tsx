@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Boton,
   BotonHerramienta,
@@ -16,15 +16,8 @@ import {
   Pestanas,
   VisorPC,
 } from "@catbyte/ui";
-import { clave, OPCIONES, PASOS, SELECCION_INICIAL, VISTA_FILAS, type Opcion } from "@/content/personaliza";
-
-// Formato de Figma: punto para miles y apóstrofo para millones ($3’045.000).
-const pesos = (n: number) => {
-  const millones = Math.floor(n / 1_000_000);
-  if (!millones) return `$${n.toLocaleString("es-CO")}`;
-  const resto = String(n % 1_000_000).padStart(6, "0");
-  return `$${millones}’${resto.slice(0, 3)}.${resto.slice(3)}`;
-};
+import { clave, OPCIONES, PASOS, VISTA_FILAS, type Opcion } from "@/content/personaliza";
+import { pesos, piezasElegidas, useConfiguracion } from "./estado";
 
 const DECORACION = {
   textura: "/personaliza/detalle/textura.png",
@@ -39,8 +32,7 @@ const TEXTO_ORDEN: Record<Orden, string> = { ninguno: "Ordenar", menor: "Menor p
 
 /** Visor con el total a la izquierda; pasos, opciones del paso actual y navegación a la derecha. */
 export function Configurador() {
-  const [indice, setIndice] = useState(0);
-  const [seleccion, setSeleccion] = useState(SELECCION_INICIAL);
+  const { indice, setIndice, seleccion, setSeleccion } = useConfiguracion();
   const [filtro, setFiltro] = useState<string | null>(null);
   const [verFiltros, setVerFiltros] = useState(false);
   const [orden, setOrden] = useState<Orden>("ninguno");
@@ -58,9 +50,7 @@ export function Configurador() {
     orden === "ninguno" ? 0 : orden === "menor" ? a.precio - b.precio : b.precio - a.precio,
   );
 
-  // Piezas elegidas, en el orden de los pasos y pestañas. Las "Sin …" no cuentan.
-  const grupos = PASOS.flatMap((p) => (p.subpasos ? p.subpasos.map((s) => ({ paso: p.id, grupo: clave(p.id, s.id) })) : [{ paso: p.id, grupo: p.id }]));
-  const elegidas = grupos.flatMap((g) => (OPCIONES[g.grupo] ?? []).filter((o) => o.id === seleccion[g.grupo] && !o.ninguna).map((o) => ({ ...o, paso: g.paso })));
+  const elegidas = piezasElegidas(seleccion);
   const total = elegidas.reduce((suma, o) => suma + o.precio, 0);
   const caseElegido = OPCIONES.case.find((o) => o.id === seleccion.case);
 
@@ -72,6 +62,15 @@ export function Configurador() {
     setSubpaso(undefined);
   };
   const elegir = (id: string) => setSeleccion((s) => ({ ...s, [grupo]: id }));
+
+  // Desde el resumen se vuelve a un paso concreto con /personaliza#paso-<id>.
+  useEffect(() => {
+    const id = window.location.hash.match(/^#paso-(.+)$/)?.[1];
+    const i = PASOS.findIndex((p) => p.id === id);
+    if (i >= 0) setIndice(i);
+    // Solo al entrar a la página.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="grid gap-40 lg:grid-cols-[minmax(0,456px)_minmax(0,1fr)] lg:gap-45">
@@ -160,10 +159,15 @@ export function Configurador() {
               Atrás
             </Boton>
           )}
-          {/* "Ver resumen" queda desactivado hasta tener el diseño de la pantalla de resumen. */}
-          <Boton className="flex-1" disabled={ultimo} title={ultimo ? "Pronto" : undefined} onClick={() => irA(indice + 1)}>
-            {ultimo ? "Ver resumen" : "Siguiente"}
-          </Boton>
+          {ultimo ? (
+            <Link href="/personaliza/resumen" className={cx(clasesBoton("primario"), "flex-1")}>
+              Ver resumen
+            </Link>
+          ) : (
+            <Boton className="flex-1" onClick={() => irA(indice + 1)}>
+              Siguiente
+            </Boton>
+          )}
         </div>
       </div>
 

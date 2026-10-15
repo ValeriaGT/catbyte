@@ -13,6 +13,7 @@ Configurador de PC (pantallas "PC's Personalizado" y modal "Detalle") y producto
 - **Migas** de pan.
 - **Footer** `variante="compacto"`: franja negra inclinada de los flujos de compra.
 - **Icono**: `chevron-izquierda`, `play`, `filtro`, `ordenar`.
+- **ResumenCompra**: lista de piezas con casillas (Figma: Select) para sacarlas del total y enlace de vuelta a su paso.
 - **Header** con submenús según el Sitemap de Figma: desplegable en escritorio (hover o clic, Esc y clic fuera
   cierran) y panel con secciones plegables en móvil (el botón hamburguesa ahora funciona).
 - **ModalVideo**: modal "¿Cómo personalizar?" con video (o la maqueta del reproductor mientras no haya video) y CTA.

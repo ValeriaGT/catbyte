@@ -36,6 +36,7 @@ export { FilaOpcion } from "./componentes/configurador/FilaOpcion";
 export { EtiquetaOpcion, type ColorEtiquetaOpcion } from "./componentes/configurador/EtiquetaOpcion";
 export { DetalleOpcion, type DetallePieza, type TextoResaltado } from "./componentes/configurador/DetalleOpcion";
 export { CarruselOpciones } from "./componentes/configurador/CarruselOpciones";
+export { ResumenCompra, type LineaResumen } from "./componentes/configurador/ResumenCompra";
 export { Pestanas } from "./componentes/configurador/Pestanas";
 export { VisorPC } from "./componentes/configurador/VisorPC";
 
