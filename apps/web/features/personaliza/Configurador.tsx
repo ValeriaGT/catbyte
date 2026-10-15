@@ -77,6 +77,7 @@ export function Configurador() {
       <VisorPC
         total={pesos(total)}
         imagen={caseElegido?.imagen}
+        vistas={caseElegido?.vistas}
         etiquetas={elegidas.map((o) => o.resumen ?? o.nombre)}
         className="mx-auto lg:mx-0"
       />

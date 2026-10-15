@@ -19,10 +19,26 @@ export function piezasElegidas(seleccion: Record<string, string>): Elegida[] {
   return grupos.flatMap((g) => (OPCIONES[g.grupo] ?? []).filter((o) => o.id === seleccion[g.grupo] && !o.ninguna).map((o) => ({ ...o, paso: g.paso, grupo: g.grupo })));
 }
 
-type Configuracion = { seleccion: Record<string, string>; indice: number };
+/** Pedido confirmado: lo que la pantalla de compra exitosa necesita mostrar. */
+export type Pedido = {
+  numero: string;
+  fecha: string;
+  piezas: string[];
+  total: number;
+  envio: string;
+  imagen?: string;
+};
+
+type Configuracion = {
+  seleccion: Record<string, string>;
+  indice: number;
+  /** Grupos desmarcados en el resumen: no se cobran. */
+  excluidas: string[];
+  pedido?: Pedido;
+};
 
 const CLAVE = "catbyte:configuracion";
-const INICIAL: Configuracion = { seleccion: SELECCION_INICIAL, indice: 0 };
+const INICIAL: Configuracion = { seleccion: SELECCION_INICIAL, indice: 0, excluidas: [] };
 
 // Almacén en la sesión del navegador; si no está disponible (modo privado, bloqueado) queda en memoria.
 let enMemoria = "";
@@ -80,5 +96,10 @@ export function useConfiguracion() {
     indice: actual.indice,
     setSeleccion: (cambiar: (s: Record<string, string>) => Record<string, string>) => guardar({ seleccion: cambiar(instantanea().seleccion) }),
     setIndice: (indice: number) => guardar({ indice }),
+    excluidas: actual.excluidas,
+    setExcluidas: (excluidas: string[]) => guardar({ excluidas }),
+    pedido: actual.pedido,
+    /** Guarda el pedido y deja el configurador listo para una compra nueva. */
+    confirmarPedido: (pedido: Pedido) => escribir(JSON.stringify({ ...INICIAL, pedido })),
   };
 }

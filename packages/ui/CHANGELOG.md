@@ -13,6 +13,11 @@ Configurador de PC (pantallas "PC's Personalizado" y modal "Detalle") y producto
 - **Migas** de pan.
 - **Footer** `variante="compacto"`: franja negra inclinada de los flujos de compra.
 - **Icono**: `chevron-izquierda`, `play`, `filtro`, `ordenar`.
+- Familia **Compra** (checkout): `CampoCompra` (campo con ícono, error y lista desplegable), `SeccionCompra`,
+  `OpcionEnvio`, `OpcionPago`, `CasillaVerificacion`, `SeguimientoPedido` (etapas del pedido) y `TarjetaPedido`.
+- **VisorPC** `vistas`: con varias fotos, el play las recorre como un giro 3D (Figma: Gif computador, variantes 1–4).
+  Las etiquetas de piezas se agregan una tras otra con 16 px de separación.
+- **Pestanas** `tamano="grande"` (títulos H-7).
 - **ResumenCompra**: lista de piezas con casillas (Figma: Select) para sacarlas del total y enlace de vuelta a su paso.
 - **Header** con submenús según el Sitemap de Figma: desplegable en escritorio (hover o clic, Esc y clic fuera
   cierran) y panel con secciones plegables en móvil (el botón hamburguesa ahora funciona).
